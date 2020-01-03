@@ -1,4 +1,4 @@
-SOURCE=cv.tex
+SOURCE=resume.tex
 
 .PHONY: all
 all:
