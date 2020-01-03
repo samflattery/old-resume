@@ -1,4 +1,9 @@
-Awesome Source CV [![Example](https://img.shields.io/badge/Exemple-pdf-blue.svg)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf)
+# resume
+
+My current resume using the template from the fork
+
+
+## Awesome Source CV [![Example](https://img.shields.io/badge/Exemple-pdf-blue.svg)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf)
 =================
 
 ## About
