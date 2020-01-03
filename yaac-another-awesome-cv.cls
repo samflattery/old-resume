@@ -17,20 +17,11 @@
 %
 % This work consists of the files awesome-source-cv.cls
 
-\ProvidesClass{yaac-another-awesome-cv}[2019/09/10  v2.2.0 'YAAC: Another Awesome CV' Class]
+\ProvidesClass{yaac-another-awesome-cv}[2018/07/19  v1.9.2 'YAAC: Another Awesome CV' Class]
 
-\def\@@ptsize{10pt}
-
-\DeclareOption{10pt}{\def\@@ptsize{10pt}}
-\DeclareOption{11pt}{\def\@@ptsize{11pt}}
-\DeclareOption{12pt}{\def\@@ptsize{12pt}}
-
-\ProcessOptions\relax
-
-\LoadClass[a4paper,\@@ptsize]{article}
+\LoadClass[letterpaper]{article}
 
 \newif\if@showLinks   \@showLinksfalse
-\newif\if@isCompact   \@isCompactfalse
 
 \DeclareOption{green}{
   \def\@green{green}
@@ -60,7 +51,6 @@
 }
 
 \DeclareOption{showLinks}{ \@showLinkstrue}
-\DeclareOption{compact}{ \@isCompacttrue}
 
 \ProcessOptions
 
@@ -73,7 +63,7 @@
 \RequirePackage[usenames,dvipsnames]{xcolor}
 \RequirePackage{fullpage}
 \RequirePackage[margin=1.5cm]{geometry}
-\RequirePackage[fixed]{fontawesome5}
+\RequirePackage{fontawesome}
 \RequirePackage{hyperref}
 \RequirePackage{titlesec}
 \RequirePackage{array}
@@ -83,7 +73,6 @@
 \RequirePackage{tikz}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{fancyhdr}
-\RequirePackage{ifthen}
 
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
@@ -171,29 +160,19 @@
 
 %New length definition
 \newlength{\rightcolumnlength}
-\setlength{\rightcolumnlength}{15.3cm minus 1cm}
+\setlength{\rightcolumnlength}{14.8cm}
 
-\newlength{\leftcolumnlength}
-\setlength{\leftcolumnlength}{2.5cm}
-
-% Override default left column length of (2.5cm)
-% Usage: \setleftcolumnlength{<length>}
-\newcommand{\setleftcolumnlength}[1]{\setlength{\leftcolumnlength}{#1}}
+\newlength{\leftcolumn}
+\setlength{\leftcolumn}{2.5cm}
 
 % Font Awesome icons aliases
 \newcommand{\mailSymbol}{\faAt}
-\newcommand{\locationSymbol}{\faMapMarker*}
+\newcommand{\locationSymbol}{\faMapMarker}
 \newcommand{\infoSymbol}{\faInfo}
-\newcommand{\linkedinSymbol}{\faLinkedinIn}
+\newcommand{\linkedinSymbol}{\faLinkedin}
 \newcommand{\viadeoSymbol}{\faViadeo}
-\newcommand{\mobileSymbol}{\faMobile*}
+\newcommand{\mobileSymbol}{\faMobilePhone}
 \newcommand{\githubSymbol}{\faGithub}
-\newcommand{\stackoverflowSymbol}{\faStackOverflow}
-\newcommand{\stackexchangeSymbol}{\faStackExchange}
-\newcommand{\mediumSymbol}{\faMedium}
-\newcommand{\bitbucketSymbol}{\faBitbucket}
-\newcommand{\websiteSymbol}{\faLink}
-
 
 \newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{Black} }
 \newcommand\important[1]{\textbf #1}
@@ -210,11 +189,11 @@
 
 % Render a text with its symbol
 % Usage; \socialtext{<icon>}{<label>}
-\newcommand{\socialtext}[2]{\mbox{\textcolor{symbolcolor}{#1}#2\hspace{0.8em}}}
+\newcommand{\socialtext}[2]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}#2\hspace{1em}}}
 
 % Render a link with its symbol
 % Usage; \sociallink{<icon>}{<label>}
-\newcommand{\sociallink}[3]{\mbox{\textcolor{symbolcolor}{#1}\link{#2}{#3}\hspace{0.8em}}}
+\newcommand{\sociallink}[3]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}\link{#2}{#3}\hspace{1em}}}
 
 % Define author's name
 % Usage: \name{<firstname>}{<lastname>}
@@ -232,9 +211,8 @@
 \newcommand*{\tagline}[1]{\def\@tagline{#1}}
 
 % Define author's photo
-% Usage: \photo[<shape: circular, square, roundedsquare, squircle>]{<diameter>}{<photo>}
-% The shape of the author's photo is circular by default.
-\newcommand{\photo}[3][circular]{\def\@photo{#3}\def\@photodiameter{#2}\def\@photoshape{#1}}
+% Usage \photo{<diameter>}{<photo>}
+\newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
 
 % Render author's address
 % Usage: \address{<address>}
@@ -256,29 +234,13 @@
 % Usage: \github{<github-nick>}
 \newcommand*{\github}[1]{\sociallink{\githubSymbol}{https://www.github.com/#1}{github.com/#1}}           % Github icon + URL
 
-% Render author's stackoverflow profile (optional)
-% Usage: \stackoverflow{<stackoverflow-user-id>}
-\newcommand*{\stackoverflow}[1]{\sociallink{\stackoverflowSymbol}{https://www.stackoverflow.com/u/#1}{stackoverflow.com/u/#1}}
-
-% Render author's stackexchange profile (optional)
-% Usage: \stackexchange{<stackexchange-user-id>}
-\newcommand*{\stackexchange}[1]{\sociallink{\stackexchangeSymbol}{https://stackexchange.com/users/#1}{stackexchange.com/users/#1}}
-
-% Render author's medium (optional)
-% Usage: \medium{<medium-nick>}
-\newcommand*{\medium}[1]{\sociallink{\mediumSymbol}{https://www.medium.com/@#1}{medium.com/#1}}
-
-% Render author's bitbucket (optional)
-% Usage: \bitbucket{<bitbucket-account-name>}
-\newcommand*{\bitbucket}[1]{\sociallink{\bitbucketSymbol}{https://bitbucket.com/#1}{bitbucket.com/#1}}
-
 % Render author's email (optional)
 % Usage: \email{<email adress>}
 \newcommand*{\email}[1]{\sociallink{\mailSymbol}{mailto:#1}{#1}}
 
 % Render a website link (optional)
-% Usage: \website{<website name>}{<website adress>}
-\newcommand*{\website}[2]{\sociallink{\websiteSymbol}{#1}{#2}}
+% Usage: \email{<email adress>}
+\newcommand*{\website}[2]{\sociallink{\faExternalLink}{#1}{#2}}
 
 % Render author's mobile phone (optional)
 % Usage: \smartphone{<mobile phone number>}
@@ -297,24 +259,7 @@
 }
 
 \newcommand\idphoto{
-	\ifthenelse{\equal{\@photoshape}{square}}{
-		% Draw square photo
-		\tikz\path[fill overzoom image={\@photo}]rectangle(\linewidth,\linewidth);
-	}{
-		\ifthenelse{\equal{\@photoshape}{roundedsquare}}{
-			% Draw square photo with rounded corners
-			\tikz\path[fill overzoom image={\@photo}][rounded corners=2mm]rectangle(\linewidth,\linewidth);
-		}{
-			\ifthenelse{\equal{\@photoshape}{squircle}}{
-				% Draw squircle photo
-				\tikz\path[fill overzoom image={\@photo}][rounded corners=8mm]rectangle(\linewidth,\linewidth);
-				}{
-					% Draw circular photo
-					\tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
-				}
-		}
-
-	}
+  \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
 }
 
 % Define social entries to print in header
@@ -344,7 +289,8 @@
     }{
       \begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}
     }
-    \user{\@firstname}{\@lastname}\\
+    \user{\@firstname}{\@lastname}
+    \smallskip \\
     \resumetitle{\@tagline}
     \smallskip\\
     \small{\@socialinfo}
@@ -354,7 +300,7 @@
         \idphoto
       \end{minipage}
     }{}
-    \bigskip
+    \smallskip
   }
 }
 
@@ -386,7 +332,7 @@
 }
 
 % Define a new column type for the scholarship environment
-\newcolumntype{Y}{>{\raggedleft}p{\leftcolumnlength}}
+\newcolumntype{Y}{>{\raggedleft}p{\leftcolumn}}
 
 % Define the 'scholarship' environment
 \newenvironment{scholarship}{%
@@ -403,7 +349,7 @@
 
 % Define the 'skills' environment
 \newenvironment{skills}{%
-  \begin{longtable}{R{\leftcolumnlength}p{\rightcolumnlength}}
+  \begin{longtable}{R{\leftcolumn}p{\rightcolumnlength}}
 }{%
   \end{longtable}
 }
@@ -411,14 +357,14 @@
 % Render a skill in the skills environment
 % Usage: \skill{<skill>}{<level>}
 \newcommand\skill[2]{
-  \textbf{#1}    & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircle[regular]}{\faCircle}}\enspace } \\
+  \textbf{#1}    & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircleThin}{\faCircle}}\enspace } \\
 }
 
 \newcolumntype{E}{>{\raggedright\arraybackslash}p{\rightcolumnlength}}
 
 % Define the 'experiences' environment
 \newenvironment{experiences}{%
-  \begin{longtable}{R{\leftcolumnlength}|E}
+  \begin{longtable}{R{\leftcolumn}|E}
 }{%
   \end{longtable}
 }
@@ -457,14 +403,33 @@
                  & \footnotesize{\foreach \n in {#9}{\cvtag{\n}}} 	\\
   }
 
-% Define the empty separator macro with different spacing according to document class option 'compact'
-\if@isCompact
-  \newcommand\emptySeparator{\multicolumn{2}{c}{}\\[-0.6em]}
-\else
-  \newcommand\emptySeparator{\multicolumn{2}{c}{}\\}
-\fi
+\newcommand\emptySeparator{\multicolumn{2}{c}{}\\}
 
+% Define the 'course' entry
+% Usage:
+% \course
+%   {<Course name>}{<Course Details>}
+\newcommand\course[2]{
+    \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+    \textbf{\textsc{#1}}
+    #2
+    \end{minipage}
+    \\*
+}
 
+% Define the 'school' entry
+% Usage:
+% \school
+%   {<School name>}{<Graduation date>}
+%   {<Major>}
+%   {<Details>}
+\newcommand\school[4] {
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+    \textbf{\textsc{\large{#1}}} \hfill \textsc{#2}\\
+    \textbf{#3}
+    #4
+  \end{minipage}
+}
 
 % Define the 'projects' environment
 \newenvironment{projects}{%
@@ -477,19 +442,28 @@
 % Usage:
 % \project
 %   {<Project name>}{<dates>}
-%   {<link1> <link2>}
 %   {<Project description>}
 %   {<techno1>,<techno2>}
-\newcommand\project[5]{
+\newcommand\project[4]{
   \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
-    \textbf{\textsc{#1}} \hfill \textsc{#2}\smallskip\\
-    #3\\
-    #4\smallskip\\
-    \footnotesize{\foreach \n in {#5}{\cvtag{\n}}}\\
+    \textbf{\textsc{#1}} \hfill \textsc{#2}
+    #3\smallskip
+    \footnotesize{\foreach \n in {#4}{\cvtag{\n}}}\\
   \end{minipage}
-  \\*
+  \\
 }
 
+% Define the 'extracurricular' entry in the 'projects' environment
+% Usage:
+% \project
+%   {<Project name>}{<dates>}
+%   {<Project description>}
+\newcommand\extracurricular[3]{
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+    \textbf{\textsc{#1}} \hfill \textsc{#2}
+    #3\smallskip
+  \end{minipage}
+}
 
 \newcommand*\twocolumnsection[2]{
   \begin{minipage}[t]{\dimexpr(\linewidth/2) - 3em}
@@ -516,17 +490,6 @@
       \multicolumn{2}{l}{\emph{#2}, \textsc{#3}}\\
       \quad \mailSymbol & \href{mailto:#4}{#4} \\
       \quad \faPhone & #5 \\
-    \end{tabular}
-  \end{minipage}%
-  }
-
-\newcommand*\refereeMailOnly[4]{
-  \hspace{1em}
-  \begin{minipage}[t]{\dimexpr(\linewidth/3) - 3em}
-    \begin{tabular}{>{}l >{}l}
-      \multicolumn{2}{l}{\textbf{#1}}\\
-      \multicolumn{2}{l}{\emph{#2}, \textsc{#3}}\\
-      \quad \mailSymbol & \href{mailto:#4}{#4} \\
     \end{tabular}
   \end{minipage}%
 }
