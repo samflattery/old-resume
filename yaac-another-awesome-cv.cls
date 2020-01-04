@@ -19,7 +19,7 @@
 
 \ProvidesClass{yaac-another-awesome-cv}[2018/07/19  v1.9.2 'YAAC: Another Awesome CV' Class]
 
-\LoadClass[letterpaper]{article}
+\LoadClass[letterpaper,11pt]{article}
 
 \newif\if@showLinks   \@showLinksfalse
 
@@ -320,6 +320,7 @@
 \newenvironment{keywords}{%
   \renewcommand{\arraystretch}{1.1}
 
+  \smallskip
   \begin{tabular}{>{}r>{}p{13cm}}
 }{%
   \end{tabular}
@@ -414,7 +415,7 @@
     \textbf{\textsc{#1}}
     #2
     \end{minipage}
-    \\*
+    % \\*
 }
 
 % Define the 'school' entry
@@ -431,11 +432,13 @@
   \end{minipage}
 }
 
+% \setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
 % Define the 'projects' environment
 \newenvironment{projects}{%
   \begin{longtable}{l}
 }{%
-  \end{longtable}
+  \end{longtable}\ignorespacesafterend
 }
 
 % Define the 'project' entry in the 'projects' environment
@@ -446,11 +449,10 @@
 %   {<techno1>,<techno2>}
 \newcommand\project[4]{
   \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
-    \textbf{\textsc{#1}} \hfill \textsc{#2}
+	  \textbf{\textsc{\large{#1}}} \hfill \textsc{#2}
     #3\smallskip
     \footnotesize{\foreach \n in {#4}{\cvtag{\n}}}\\
   \end{minipage}
-  \\
 }
 
 % Define the 'extracurricular' entry in the 'projects' environment

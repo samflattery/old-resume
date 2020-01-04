@@ -11,5 +11,5 @@ clean:
 .PHONY: watch
 watch:  ## Recompile on updates to the source file
 	while true; do \
-		fswatch *.tex | make; \
+		fswatch *.tex sections/*.tex *.cls | make; \
 	done
