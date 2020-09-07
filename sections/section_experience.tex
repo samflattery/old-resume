@@ -9,33 +9,22 @@
 % Template license:
 % CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 %Section: Work Experience at the top
-\sectionTitle{Personal Projects}{\faLaptop}
-%\renewcommand{\labelitemi}{$\bullet$}
-\begin{experiences}
-  \experience
-    {Now}   {Programming Language: sudoCode}{enterprise}{ireland}
-    {Dec 2019} {
-                      \begin{itemize}
-                        \item Designed and implemented a programming language called sudoCode                        
-                        \item Learned C++ from scratch as a personal challenge                    
-                        \item Lexed the code into tokens before transforming the tokens into a parse tree             
-                        \item Transformed the parse tree into an AST and executed it                                                             
-                      \end{itemize}
-                    }
-                    {C++, Python, HTTP, Web APIs, Make}
-  \emptySeparator
-  \experience
-    {May 2019} {iOS App: FCE++}{est}{ire}
-    {Aug 2019}    {
-                      \begin{itemize}
-                        \item Created an iOS app on which students can view CMU’s course information and ask and answers questions on courses                          
-                        \item Learned Swift and iOS development from scratch
-                        \item Utilized the Parse Platform API and HTTP requests to manage a server-side database of user information and comments 
-                        \item Compiled data from CMU’s CSV of course data to JSON format using Python’s Pandas, CSV and JSON modules 
-                        \item Leveraged OOP principles to create a modular code base
-                      \end{itemize}
-                    }
-                    {Swift, iOS Dev, Python, HTTP, Web APIs}
-  \emptySeparator
- 
-\end{experiences}
+\sectionTitle{Experience}{\faSuitcase}
+
+\begin{projects}
+
+    \project
+	{Software Engineering Intern}{June 2020 - Aug 2020}
+	{
+		\\ \textbf{\textsc{Google (remote)}}
+	    \begin{itemize}
+			\item Worked with the security team to find bugs in Envoy, an open source L7 proxy, through randomized fuzz testing
+			\item Wrote a fuzz target for Envoy's xDS protocol, which provides a centralized infrastructure for distributing configuration files to Envoy nodes
+			\item Implemented an abstract state tracker that maintained the correct state of the nodes to verify that updates to the configurations were properly processed after executing the fuzzed input
+			\item Increased fuzz coverage over key files by more than 40\%
+			\item Fixed two logical bugs in Envoy's implementation of xDS found by my fuzzer
+        \end{itemize}
+    }
+	{C++17, Bazel, Protobuf, Networking, Git} \\
+
+\end{projects}
