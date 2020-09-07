@@ -447,7 +447,14 @@
 %   {<Project name>}{<dates>}
 %   {<Project description>}
 %   {<techno1>,<techno2>}
-\newcommand\project[4]{
+\newcommand\project[3]{
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+	  \textbf{\textsc{\large{#1}}} \hfill \textsc{#2} \\
+    #3\smallskip
+  \end{minipage}
+}
+
+\newcommand\work[4]{
   \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
 	  \textbf{\textsc{\large{#1}}} \hfill \textsc{#2}
     #3\smallskip
