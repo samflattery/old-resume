@@ -73,7 +73,9 @@
 \RequirePackage{tikz}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{fancyhdr}
+\RequirePackage{tabto}
 
+\NumTabs{10} % 10 equally spaced tabs per line, used to align coursework
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
 % Define default accent colors
