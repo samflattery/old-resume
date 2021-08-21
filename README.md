@@ -1,6 +1,6 @@
 # resume
 
-My current resume, found [here](https://github.com/samflattery/resume/blob/master/resume.pdf)
+My old resume, found [here](https://github.com/samflattery/old-resume/blob/master/resume.pdf)
 
 ### acknowledgements
 
